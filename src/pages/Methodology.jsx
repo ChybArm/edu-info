@@ -2,74 +2,36 @@ import { useState } from 'react';
 import SectionHeader from '../components/SectionHeader';
 import Diagram from '../components/Diagram';
 import Expandable from '../components/Expandable';
-import { eras, authors } from '../data/topics';
-
-const steps = [
-  {
-    label: 'Դարաշրջան',
-    detail: 'Սկսիր՝ որոշելով, թե որ պատմական ժամանակաշրջանին է պատկանում գործը։ Դարաշրջանը ձևավորում է ամեն ինչ — արժեքները, վախերն ու հարցերը, որ հեղինակը գրում է։',
-    example: '19-րդ դ. Ռոմանտիզմ — ազգային ազատագրական շարժումների, հայ ժողովրդի ռուսական ու թուրքական ճնշման, աշխարհաբար լեզվի ծնունդի ժամանակ։',
-    question: 'Ինչ էր կատարվում աշխարհում, երբ գործն ստեղծվեց? Ի՞նչից էին վախենում, ինչ էին ուզում?',
-  },
-  {
-    label: 'Գրական Գործ',
-    detail: 'Անվանիր կոնկրետ գործն ու հեղինակին։ Ո՞ր ժանրի է, ե՞րբ ու ինչու՞ է գրվել, ու ո՞ւ համար։',
-    example: 'Խ. Աբովյան «Վերք Հայաստանի» (1841) — առաջին հայ վեպը, գրված աշխարհաբար, ռուս-պարսկական պատերազմի ֆոնին։',
-    question: 'Ո՞ր ժանրի է գործը: Ո՞վ, ե՞րբ ու ի՞նչ նպատակով է գրել: Ո՞ւ համար:',
-  },
-  {
-    label: 'Հիմնական Գաղափար',
-    detail: 'Որոշիր, թե կոնկրետ ո՞ր կենտրոնական թեման ես ուզում վերլուծել։ Կոնկրետ եղիր — ոչ «ազատություն», այլ «ազգային ինքնությունն ու ճնշված ժողովրդի ձայնը»։',
-    example: 'Աբովյանի մոտ՝ ազգային ինքնությունն ու ժողովրդի ողբը ռուսական «ազատագրման» ֆոնին. ազատությո՞ւն, թե՞ նոր ճնշում:',
-    question: 'Ո՞ր կոնկրետ գաղափարն ես ուզում վերլուծել: Կարո՞ղ ես արտահայտել մեկ նախադասությամբ, որի հետ կարելի է համաձայն չլինել:',
-  },
-  {
-    label: 'Պատմական Համատեքստ',
-    detail: 'Կապիր հիմնական գաղափարն ու գործն իրական պատմական իրադարձությանն ու ժամանակաշրջանի կոնտեքստի հետ։ Սա է տարբերում վերլուծությունը վերապատմությունից։',
-    example: 'Ռուս-պարսկական 1826–28 թթ. պատերազմ — Արևելյան Հայաստանն անցնում է Ռուսաստանին, բայց հայ ժողովրդի կյանքը, ճնշումն ու ինքնությունը մնում են անլուծ:',
-    question: 'Ո՞ր իրական իրադարձությունն է կապ ունի գաղափարի հետ: Ո՞րն է պատմական ֆոնն ու ճնշումը:',
-  },
-];
-
-const chainExamples = [
-  {
-    title: 'Աբովյան — «Վերք Հայաստանի»',
-    era: 'Ռոմանտիզմ, 19-րդ դ. առաջին կես',
-    work: '«Վերք Հայաստանի», Աբովյան (1841)',
-    idea: 'Ազգային ինքնություն ու ժողովրդի ողբ ռուսական «ազատագրման» ֆոնին',
-    context: 'Ռուս-պարսկական 1826–28 թթ. պատերազմ — Արևելյան Հայաստանն անցնում է Ռուսաստանին',
-    color: 'var(--gold)',
-  },
-  {
-    title: 'Չարենց — «Ես իմ անուշ Հայաստանի»',
-    era: '20-րդ դ., Ցեղասպանությունից հետո',
-    work: '«Ես իմ անուշ Հայաստանի», Չարենց (1920)',
-    idea: 'Հայրենիքի կարոտ ու ողբ — հայ ինքնությունն ու լեզուն որպես փրկություն',
-    context: '1915 թ. Հայոց ցեղասպանություն — կոտորած, ցրում, ողջ հայ ժողովրդի ողբ',
-    color: 'var(--blue)',
-  },
-  {
-    title: 'Ռաֆֆի — «Ջալալեդդին»',
-    era: 'Ռեալիզմ, 19-րդ դ. երկրորդ կես',
-    work: '«Ջալալեդդին», Ռաֆֆի (1878)',
-    idea: 'Ազգային-ազատագրական պայքարի անհրաժեշտություն ու ֆեդայականի հերոսությունը',
-    context: 'Ռուս-թուրքական 1877–78 թթ. պատերազմ — արևմտահայ ֆեդայականների հույս ու ողբ',
-    color: 'var(--teal)',
-  },
-];
 
 export default function Methodology() {
-  const [builderEra, setBuilderEra] = useState('');
-  const [builderWork, setBuilderWork] = useState('');
-  const [builderIdea, setBuilderIdea] = useState('');
-  const [builderContext, setBuilderContext] = useState('');
+  const stepColors = ['var(--blue)', 'var(--gold)', 'var(--teal)', 'var(--blue-mid)'];
 
-  const selectedEra = eras.find(e => e.id === builderEra);
-  const availableWorks = authors.flatMap(a => a.works).filter(w =>
-    !builderEra || w.relatedEraIds?.includes(builderEra)
-  );
-  const selectedWork = availableWorks.find(w => w.id === builderWork);
-  const chainComplete = builderEra && builderWork && builderIdea && builderContext;
+  const stepsData = [
+    {
+      label: 'Դարաշրջան',
+      detail: 'Որոշի՛ր, թե պատմական որ ժամանակաշրջանին է պատկանում գործը։ Ի՞նչ էր կատարվում աշխարհում, ի՞նչ միջավայրում էր ապրում հեղինակը։',
+      example: 'Ռոմանտիզմ՝ 19-րդ դար՝ ազգային ազատագրական շարժումների, ժողովրդական ոգու և լեզվի վերածննդի ժամանակ։',
+      question: 'Ինչ էր կատարվում աշխարհում, երբ գործն ստեղծվեց? Ի՞նչից էին վախենում, ինչ էին ուզում?',
+    },
+    {
+      label: 'Գրական գործ',
+      detail: 'Նշի՛ր հեղինակին և հստակ ստեղծագործությունը։ Ի՞նչ ժանրի ստեղծագործություն է այն, ե՞րբ և ինչի՞ համար է գրվել։',
+      example: 'Խաչատուր Աբովյան, «Վերք Հայաստանի», 1841 թ., առաջին հայ վեպը՝ գրված աշխարհաբար։',
+      question: 'Ո՞ր ժանրի է գործը: Ո՞վ, ե՞րբ ու ի՞նչ նպատակով է գրել: Ո՞ւ համար:',
+    },
+    {
+      label: 'Հիմնական գաղափար',
+      detail: 'Ո՞ր կենտրոնական գաղափարն ես ուզում վերլուծել։ Միտքդ հստակ ձևակերպի՛ր։ Ոչ թե «ազատություն», այլ «ազատության կարոտն ու ազգային ինքնությունը»։',
+      example: 'Ազգային ինքնությունն ու ժողովրդի զարթոնքը ռուսական տիրապետության ժամանակ։',
+      question: 'Կարո՞ղ ես արտահայտել մեկ նախադասությամբ, որի հետ կարելի է համաձայն չլինել:',
+    },
+    {
+      label: 'Պատմական համատեքստ',
+      detail: 'Գաղաթարի և պատմական իրադարձության կապ ստեղծիր։ Հենց սա է տարբերում վերլուծությունը վերապատմումից։',
+      example: 'Ռուսական կայսրության և Պարսկաստանի տիրապետության ներքո հայ ժողովուրդը պայքարում էր հանուն ինքնության պահպանման՝ դեմ գնալով բոլոր ճնշումներին և չկորցնելով պայծառ ապագայի հույսը։',
+      question: 'Ո՞ր իրական իրադարձությունն է կապ ունի գաղափարի հետ: Ո՞րն է պատմական ֆոնն ու ճնշումը?',
+    },
+  ];
 
   return (
     <div>
@@ -80,31 +42,31 @@ export default function Methodology() {
         color="var(--blue-mid)"
       />
 
-      {/* Step guide */}
       <section style={{ marginBottom: '56px' }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', marginBottom: '8px' }}>
-          Չորս քայլ
+          Վերլուծության չորս քայլերը
         </h2>
         <p style={{ color: 'var(--ink-muted)', marginBottom: '24px', fontStyle: 'italic', fontSize: '14px' }}>
-          Սեղմիր ցանկացած քայլի վրա ստորև՝ ծանոթանալու համար։
+          Յուրաքանչյուր քայլ կառուցում է քո էսսեի տրամաբանական հիմքը։
         </p>
-        <Diagram steps={steps} interactive={true} />
+        
+        <Diagram steps={stepsData} interactive={true} />
 
         <div style={{ display: 'grid', gap: '20px', marginTop: '32px' }}>
-          {steps.map((step, i) => (
+          {stepsData.map((step, i) => (
             <div key={i} style={{
               background: 'var(--white)',
               border: '1px solid var(--border)',
               borderRadius: '12px',
               padding: '22px 24px',
               boxShadow: 'var(--shadow)',
-              borderLeft: `4px solid ${['var(--blue)', 'var(--gold)', 'var(--teal)', 'var(--blue-mid)'][i]}`,
+              borderLeft: `4px solid ${stepColors[i]}`,
             }}>
               <div style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '10px',
                 letterSpacing: '2px',
-                color: ['var(--blue)', 'var(--gold)', 'var(--teal)', 'var(--blue-mid)'][i],
+                color: stepColors[i],
                 marginBottom: '6px',
                 textTransform: 'uppercase',
               }}>
@@ -132,7 +94,7 @@ export default function Methodology() {
               <div style={{
                 display: 'flex', gap: '8px', alignItems: 'flex-start',
                 fontSize: '14px',
-                color: ['var(--blue)', 'var(--gold)', 'var(--teal)', 'var(--blue-mid)'][i],
+                color: stepColors[i],
               }}>
                 <span>❓</span>
                 <span style={{ fontStyle: 'italic' }}>{step.question}</span>
@@ -142,21 +104,26 @@ export default function Methodology() {
         </div>
       </section>
 
-      {/* Worked examples */}
       <section style={{ marginBottom: '56px' }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', marginBottom: '20px' }}>
           Շղթայի օրինակներ
         </h2>
         <div style={{ display: 'grid', gap: '14px' }}>
-          {chainExamples.map((ex, i) => (
+          {[
+            {
+              title: 'Խաչատուր Աբովյան — «Վերք Հայաստանի»',
+              values: ['Ռոմանտիզմ, 19-րդ դար', '«Վերք Հայաստանի», 1841 թ.', 'Ազգային ինքնությունն ու ժողովրդի զարթոնքը', 'Պայքար Ռուսական և Պարսկական տիրապետության ներքո'],
+              color: 'var(--gold)',
+            },
+            {
+              title: 'Եղիշե Չարենց — «Ես իմ անուշ Հայաստանի»',
+              values: ['20-րդ դ., հետցեղասպանական շրջան', '«Ես իմ անուշ Հայաստանի», 1920 թ.', 'Հավաքական հայրենիքի և լեզվի պաշտամունքը', 'Ցեղասպանությունից հետո ազգային արժեքների վերաիմաստավորում'],
+              color: 'var(--blue)',
+            }
+          ].map((ex, i) => (
             <Expandable key={i} label={ex.title} accent={ex.color}>
               <div style={{ display: 'grid', gap: '10px' }}>
-                {[
-                  { label: 'Դարաշրջան', value: ex.era },
-                  { label: 'Գրական Գործ', value: ex.work },
-                  { label: 'Հիմնական Գաղափար', value: ex.idea },
-                  { label: 'Պատմական Համատեքստ', value: ex.context },
-                ].map((row, j) => (
+                {['Դարաշրջան', 'Գրական գործ', 'Հիմնական գաղափար', 'Պատմական համատեքստ'].map((label, j) => (
                   <div key={j} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                     <span style={{
                       fontSize: '11px', fontFamily: 'var(--font-body)',
@@ -167,179 +134,14 @@ export default function Methodology() {
                       borderRadius: '4px',
                       flexShrink: 0, marginTop: '2px',
                     }}>
-                      {row.label}
+                      {label}
                     </span>
-                    <span style={{ fontSize: '14.5px', color: 'var(--ink)', lineHeight: 1.65 }}>{row.value}</span>
+                    <span style={{ fontSize: '14.5px', color: 'var(--ink)', lineHeight: 1.65 }}>{ex.values[j]}</span>
                   </div>
                 ))}
               </div>
             </Expandable>
           ))}
-        </div>
-      </section>
-
-      {/* Interactive chain builder */}
-      <section>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', marginBottom: '8px' }}>
-          Կառուցիր քո շղթան
-        </h2>
-        <p style={{ color: 'var(--ink-muted)', marginBottom: '24px', fontStyle: 'italic', fontSize: '14px' }}>
-          Ինքդ կազմիր վերլուծական շղթա — ընտրիր դարաշրջան, գործ, գաղափար ու կոնտեքստ։
-        </p>
-
-        <div style={{
-          background: 'var(--white)',
-          border: '1.5px solid var(--border)',
-          borderRadius: '14px',
-          padding: '28px',
-          boxShadow: 'var(--shadow)',
-        }}>
-          <div style={{ display: 'grid', gap: '18px' }}>
-            {/* Step 1 */}
-            <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: '14px', marginBottom: '8px', color: 'var(--blue)' }}>
-                Քայլ 1 — Ընտրիր դարաշրջան
-              </label>
-              <select
-                value={builderEra}
-                onChange={e => { setBuilderEra(e.target.value); setBuilderWork(''); }}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1.5px solid var(--border)', fontFamily: 'var(--font-body)', fontSize: '15px', background: 'var(--bg)', color: 'var(--ink)' }}
-              >
-                <option value="">Ընտրիր դարաշրջան...</option>
-                {eras.map(e => <option key={e.id} value={e.id}>{e.name} ({e.period})</option>)}
-              </select>
-              {selectedEra && <p style={{ fontSize: '13px', color: 'var(--ink-muted)', marginTop: '6px', fontStyle: 'italic' }}>{selectedEra.summary}</p>}
-            </div>
-
-            {/* Step 2 */}
-            <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: '14px', marginBottom: '8px', color: 'var(--gold)' }}>
-                Քայլ 2 — Ընտրիր գրական գործ
-              </label>
-              <select
-                value={builderWork}
-                onChange={e => setBuilderWork(e.target.value)}
-                disabled={!builderEra}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1.5px solid var(--border)', fontFamily: 'var(--font-body)', fontSize: '15px', background: builderEra ? 'var(--bg)' : 'var(--bg-alt)', color: 'var(--ink)', opacity: builderEra ? 1 : 0.5 }}
-              >
-                <option value="">Ընտրիր գործ...</option>
-                {availableWorks.map(w => <option key={w.id} value={w.id}>{w.title} ({w.authorName})</option>)}
-              </select>
-              {selectedWork && <p style={{ fontSize: '13px', color: 'var(--ink-muted)', marginTop: '6px', fontStyle: 'italic' }}>{selectedWork.summary}</p>}
-            </div>
-
-            {/* Step 3 */}
-            <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: '14px', marginBottom: '8px', color: 'var(--teal)' }}>
-                Քայլ 3 — Ձևակերպիր հիմնական գաղափարը
-              </label>
-              {selectedWork && (
-                <div style={{ marginBottom: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                  {selectedWork.keyIdeas.map((idea, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setBuilderIdea(idea)}
-                      style={{
-                        padding: '5px 12px',
-                        borderRadius: '6px',
-                        border: `1px solid ${builderIdea === idea ? 'var(--teal)' : 'var(--border)'}`,
-                        background: builderIdea === idea ? 'var(--teal-light)' : 'var(--white)',
-                        color: builderIdea === idea ? 'var(--teal)' : 'var(--ink-light)',
-                        fontSize: '13px', cursor: 'pointer',
-                        fontFamily: 'var(--font-body)',
-                      }}
-                    >
-                      {idea}
-                    </button>
-                  ))}
-                </div>
-              )}
-              <input
-                type="text"
-                placeholder="Կամ ձևակերպիր ինքդ..."
-                value={builderIdea}
-                onChange={e => setBuilderIdea(e.target.value)}
-                disabled={!builderWork}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1.5px solid var(--border)', fontFamily: 'var(--font-body)', fontSize: '15px', background: builderWork ? 'var(--bg)' : 'var(--bg-alt)', color: 'var(--ink)', opacity: builderWork ? 1 : 0.5 }}
-              />
-            </div>
-
-            {/* Step 4 */}
-            <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: '14px', marginBottom: '8px', color: 'var(--blue-mid)' }}>
-                Քայլ 4 — Կապիր պատմական կոնտեքստի հետ
-              </label>
-              {selectedEra && (
-                <div style={{ marginBottom: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                  {selectedEra.keyFacts.slice(0, 3).map((fact, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setBuilderContext(fact)}
-                      style={{
-                        padding: '5px 12px',
-                        borderRadius: '6px',
-                        border: `1px solid ${builderContext === fact ? 'var(--blue-mid)' : 'var(--border)'}`,
-                        background: builderContext === fact ? 'var(--blue-light)' : 'var(--white)',
-                        color: builderContext === fact ? 'var(--blue-mid)' : 'var(--ink-light)',
-                        fontSize: '13px', cursor: 'pointer', textAlign: 'left',
-                        fontFamily: 'var(--font-body)',
-                      }}
-                    >
-                      {fact}
-                    </button>
-                  ))}
-                </div>
-              )}
-              <input
-                type="text"
-                placeholder="Կամ գրիր պատմական իրադարձություն..."
-                value={builderContext}
-                onChange={e => setBuilderContext(e.target.value)}
-                disabled={!builderIdea}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1.5px solid var(--border)', fontFamily: 'var(--font-body)', fontSize: '15px', background: builderIdea ? 'var(--bg)' : 'var(--bg-alt)', color: 'var(--ink)', opacity: builderIdea ? 1 : 0.5 }}
-              />
-            </div>
-          </div>
-
-          {/* Result */}
-          {chainComplete && (
-            <div style={{
-              marginTop: '24px',
-              background: 'var(--blue)',
-              color: 'var(--white)',
-              borderRadius: '12px',
-              padding: '22px 24px',
-            }}>
-              <div style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '3px', color: 'var(--gold-light)', marginBottom: '14px', textTransform: 'uppercase' }}>
-                Քո վերլուծական շղթան
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center' }}>
-                {[
-                  { label: 'Դարաշրջան', value: selectedEra?.name },
-                  '→',
-                  { label: 'Գործ', value: selectedWork?.title },
-                  '→',
-                  { label: 'Գաղափար', value: builderIdea },
-                  '→',
-                  { label: 'Կոնտեքստ', value: builderContext },
-                ].map((item, i) =>
-                  item === '→' ? (
-                    <span key={i} style={{ color: 'var(--gold)', fontSize: '20px' }}>→</span>
-                  ) : (
-                    <div key={i} style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px 14px' }}>
-                      <div style={{ fontSize: '10px', fontFamily: 'var(--font-body)', letterSpacing: '2px', color: 'rgba(255,255,255,0.45)', marginBottom: '4px', textTransform: 'uppercase' }}>
-                        {item.label}
-                      </div>
-                      <div style={{ fontSize: '14px', color: 'var(--white)', lineHeight: 1.4 }}>{item.value}</div>
-                    </div>
-                  )
-                )}
-              </div>
-              <p style={{ marginTop: '14px', fontSize: '13px', color: 'rgba(255,255,255,0.5)', fontStyle: 'italic' }}>
-                Սա քո էսսեի հիմնաշղթան է։ Ընդլայնիր յուրաքանչյուր կետը պարբերության։
-              </p>
-            </div>
-          )}
         </div>
       </section>
     </div>

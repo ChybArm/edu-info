@@ -2,11 +2,13 @@ import { NavLink } from 'react-router-dom';
 
 const links = [
   { to: '/', label: 'Գլխավոր' },
-  { to: '/exam-structure', label: 'Քննության Կառուցվածք' },
-  { to: '/topic-bank', label: 'Թեմաների Բազա' },
+  { to: '/exam-structure', label: 'Քննության կառուցվածք' },
+  { to: '/topic-bank', label: 'Թեմաների բազա' },
   { to: '/methodology', label: 'Մեթոդաբանություն' },
-  { to: '/essay-examples', label: 'էսսեի Օրինակներ' },
-  { to: '/knowledge-check', label: 'Գիտելիքի Ստուգում' },
+  { to: '/essay-examples', label: 'էսսեի օրինակներ' },
+  { to: '/knowledge-check', label: 'Գիտելիքի ստուգում' },
+  { to: '/sources', label: 'Օգտագործված աղբյուրներ' },
+  { to: '/about', label: 'Մեր մասին' },
 ];
 
 export default function Footer() {
@@ -122,7 +124,7 @@ export default function Footer() {
               color: 'rgba(255,255,255,0.28)',
               margin: 0, lineHeight: 1.55,
             }}>
-              Հարցեր, կարծիքներ,<br />առաջարկներ — ողջունելի են։
+              Հարցեր, կարծիքներ,<br />առաջարկներ։
             </p>
           </div>
         </div>
@@ -138,10 +140,10 @@ export default function Footer() {
           gap: '10px',
         }}>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.22)', margin: 0 }}>
-            © {year} Էսսե։ Բոլոր իրավունքները պաշտպանված են։
+            © {year} Էսսեագիր։ Բոլոր իրավունքները պաշտպանված են։
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.22)', margin: 0, fontStyle: 'italic', fontFamily: 'var(--font-display)' }}>
-            Ստեղծված 9-րդ դասարանի սովորողների համար, ովքեր ուզում են մտածել, ոչ թե անգիր անել։
+            Կայքը ստեղծված է 7-9րդ դասարաններում սովորողների համար, որոնք ուզում են զարգացնել քննական մտածողություն, վերլուծական հմտություններ և էսսե գրելու կարողություն։
           </p>
         </div>
       </div>

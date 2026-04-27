@@ -3,11 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 const links = [
   { to: '/', label: 'Գլխավոր' },
-  { to: '/exam-structure', label: 'Քննության Կառուցվածք' },
-  { to: '/topic-bank', label: 'Թեմաների Բազա' },
+  { to: '/exam-structure', label: 'Քննության կառուցվածք' },
+  { to: '/topic-bank', label: 'Թեմաների բազա' },
   { to: '/methodology', label: 'Մեթոդաբանություն' },
-  { to: '/essay-examples', label: 'էսսեի Օրինակներ' },
-  { to: '/knowledge-check', label: 'Գիտելիքի Ստուգում' },
+  { to: '/essay-examples', label: 'էսսեի օրինակներ' },
+  { to: '/knowledge-check', label: 'Գիտելիքի ստուգում' },
+  { to: '/sources', label: 'Օգտագործված աղբյուրներ' },
+  { to: '/about', label: 'Մեր մասին' },
 ];
 
 export default function Navbar() {
@@ -15,7 +17,7 @@ export default function Navbar() {
 
   const linkStyle = (isActive) => ({
     fontFamily: 'var(--font-body)',
-    fontSize: '13.5px',
+    fontSize: '11px',
     fontWeight: isActive ? 600 : 400,
     color: isActive ? 'var(--gold)' : 'rgba(255,255,255,0.78)',
     textDecoration: 'none',

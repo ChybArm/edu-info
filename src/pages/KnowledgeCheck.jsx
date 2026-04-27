@@ -54,7 +54,7 @@ function Quiz() {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--ink-muted)', marginBottom: '20px' }}>
-        <span>Հարց {current + 1} {questions.length}-ից</span>
+        <span>Հարց {current + 1} / {questions.length}-ից</span>
         <span>Ընդհանուր միավոր. {score}</span>
       </div>
 

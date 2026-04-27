@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SectionHeader from '../components/SectionHeader';
 import {
   literatureThemes,
   historyTopics,
@@ -416,25 +417,18 @@ export default function TopicBank() {
     setSelectedHist(null);
   };
 
-
   return (
     <div>
-      {/* Page heading */}
-      <div style={{ marginBottom: '36px' }}>
-        <div style={{ fontFamily: 'var(--font-body)', fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
-          02 — Թեմաների Բազա
-        </div>
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px,5vw,42px)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.3px', marginBottom: '10px' }}>
-          Թեմաների Բազա
-        </h1>
-        <div style={{ width: '52px', height: '3px', background: 'linear-gradient(90deg, var(--blue-mid), var(--gold))', borderRadius: '2px', marginBottom: '14px' }} />
-        <p style={{ fontSize: '16px', color: 'var(--ink-muted)', fontStyle: 'italic', maxWidth: '540px', lineHeight: 1.65 }}>
-          Ընտրեք Գրականության կամ Պատմության բաժինը՝ թեմաներն ուսումնասիրելու համար:
-        </p>
-      </div>
+      {/* Օգտագործում ենք SectionHeader կոմպոնենտը */}
+      <SectionHeader
+        number="02"
+        title="Թեմաների Բազա"
+        subtitle="Ընտրեք Գրականության կամ Պատմության բաժինը՝ թեմաներն ուսումնասիրելու համար:"
+        color="var(--blue-mid)" 
+      />
 
       {/* Section switcher — always visible */}
-      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '36px' }}>
+      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '36px', marginTop: '20px' }}>
         <SectionPill
           active={section === 'literature'}
           onClick={() => handleSectionSwitch('literature')}

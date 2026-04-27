@@ -180,7 +180,7 @@ function SubCriterionRow({ sub, accentColor }) {
               color: 'var(--green)',
             },
             {
-              label: `Բավարար (${Math.ceil(sub.maxPoints / 2)} միավոր)`,
+              label: `Լավ (${Math.ceil(sub.maxPoints / 2)} միավոր)`,
               text: sub.descriptors.mid,
               color: 'var(--gold)',
             },
@@ -227,6 +227,31 @@ function SubCriterionRow({ sub, accentColor }) {
               </span>
             </div>
           ))}
+
+          {/* Новый блок для вывода Note */}
+          {sub.note && (
+            <div
+              style={{
+                marginTop: '4px',
+                padding: '10px 12px',
+                background: 'var(--bg-alt)',
+                borderRadius: '6px',
+                borderLeft: `3px solid ${accentColor}`,
+                fontSize: '13px',
+                color: 'var(--ink-muted)',
+                fontStyle: 'italic',
+                display: 'flex',
+                gap: '10px',
+                alignItems: 'center'
+              }}
+            >
+              <span style={{ fontSize: '14px' }}></span>
+              <div>
+                <strong style={{ fontStyle: 'normal', color: 'var(--ink)' }}>Նշում՝ </strong>
+                {sub.note}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -435,7 +460,7 @@ export default function ExamStructure() {
       <SectionHeader
         number="01"
         title="Քննության կառուցվածք"
-        subtitle="Նախքան բուն առաջադրանքին անցնելը, ծանոթացեք գնահատման սկզբունքներին"
+        subtitle="Նախքան բուն առաջադրանքին անցնելը, ծանոթացե՛ք գնահատման սկզբունքներին։"
         color="var(--blue)"
       />
 
@@ -459,17 +484,6 @@ export default function ExamStructure() {
               boxShadow: 'var(--shadow)',
             }}
           >
-            <div
-              style={{
-                fontSize: '11px',
-                fontFamily: 'monospace',
-                letterSpacing: '1px',
-                color: c.color,
-                marginBottom: '6px',
-              }}
-            >
-              {c.subCriteria.length} ենթաչափանիշ
-            </div>
 
             <div
               style={{
@@ -482,6 +496,17 @@ export default function ExamStructure() {
               }}
             >
               {c.name}
+            </div>
+            <div
+              style={{
+                fontSize: '10px',
+                fontFamily: 'monospace',
+                letterSpacing: '1px',
+                color: c.color,
+                marginBottom: '6px',
+              }}
+            >
+              {c.subCriteria.length} ենթաչափանիշ
             </div>
 
             <div
@@ -584,7 +609,7 @@ export default function ExamStructure() {
             fontSize: '14px',
           }}
         >
-          Սեղմեք յուրաքանչյուր չափանիշի վրա՝ ենթաչափանիշները տեսնելու համար։
+          Սեղմե՛ք յուրաքանչյուր չափանիշի վրա՝ ենթաչափանիշները տեսնելու համար։
         </p>
 
         {criteria.map((c) => (
@@ -600,7 +625,7 @@ export default function ExamStructure() {
             marginBottom: '20px',
           }}
         >
-          Հաճախակի հանդիպող սխալներ։ Ինչպես խուսափել դրանցից
+          Հաճախ հանդիպող սխալներ։ Ինչպե՞ս խուսափել դրանցից
         </h2>
 
         <div style={{ display: 'grid', gap: '12px' }}>
@@ -720,16 +745,16 @@ export default function ExamStructure() {
               fontFamily: 'var(--font-display)',
             }}
           >
-            Աշխատանքը հանձնելուց առաջ ստուգեք հետևյալ կետերը․
+            Աշխատանքը հանձնելուց առաջ ստուգե՛ք հետևյալ կետերը․
           </p>
 
           {[
-            'Իմ թեզը հստակ է և ուղղակիորեն պատասխանում է հարցին',
-            'Յուրաքանչյուր պարբերություն տրամաբանորեն կապված է թեզի հետ',
-            'Բոլոր փաստարկները հիմնավորված են և ունեն բացատրություն',
-            'Ներկայացված է անհրաժեշտ պատմական համատեքստը',
-            'Եզրակացությունն արտահայտում է ամփոփիչ և խորը վերլուծություն',
-            'Լեզուն զուսպ է, զերծ անձնական էմոցիաներից և ավելորդաբանությունից',
+            'Իմ թեզը հստակ է և ուղղակիորեն պատասխանում է հարցին։',
+            'Յուրաքանչյուր պարբերություն տրամաբանորեն կապված է թեզի հետ։',
+            'Բոլոր փաստարկները հիմնավորված են և ունեն բացատրություն։',
+            'Ներկայացված է անհրաժեշտ պատմական համատեքստը։',
+            'Եզրակացությունն արտահայտում է ամփոփիչ և խոր վերլուծություն։',
+            'Լեզուն զուսպ է՝ զերծ անձնական հույզերից և ավելորդ մեկնաբանություններից։',
           ].map((item, i) => (
             <div
               key={i}

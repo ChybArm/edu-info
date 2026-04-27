@@ -39,10 +39,10 @@ export default function SectionHeader({ number, title, subtitle, color = 'var(--
           {subtitle}
         </p>
       )}
-      <div style={{
+<div style={{
         width: '52px',
         height: '3px',
-        background: `linear-gradient(90deg, ${color}, var(--gold))`,
+        background: color, 
         borderRadius: '2px',
         marginTop: '18px',
       }} />

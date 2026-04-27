@@ -6,6 +6,8 @@ import TopicBank from './pages/TopicBank';
 import Methodology from './pages/Methodology';
 import EssayExamples from './pages/EssayExamples';
 import KnowledgeCheck from './pages/KnowledgeCheck';
+import AboutUs from './pages/AboutUs';
+import Sources from './pages/Sources';
 import './index.css';
 
 export default function App() {
@@ -18,6 +20,8 @@ export default function App() {
         <Route path="/methodology" element={<Methodology />} />
         <Route path="/essay-examples" element={<EssayExamples />} />
         <Route path="/knowledge-check" element={<KnowledgeCheck />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/sources" element={<Sources />} />
       </Routes>
     </Layout>
   );
