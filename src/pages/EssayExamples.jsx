@@ -320,3 +320,5 @@
     </div>
   </div>
 </div>
+
+export default EssayExamples;
