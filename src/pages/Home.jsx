@@ -84,143 +84,175 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero */}
-      <div style={{
-        background: 'linear-gradient(135deg, var(--blue) 0%, #0e2550 60%, #162d5e 100%)',
-        borderRadius: '20px',
-        padding: 'clamp(40px, 6vw, 80px) clamp(28px, 5vw, 68px)',
-        marginBottom: '60px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        {/* Decorative khachkar patterns */}
-        <div style={{ position: 'absolute', top: '-10px', right: '40px' }}>
-          <KhachkarMotif size={140} color="rgba(255,255,255,0.04)" />
-        </div>
-        <div style={{ position: 'absolute', bottom: '20px', right: '200px' }}>
-          <KhachkarMotif size={80} color="rgba(184,150,10,0.08)" />
-        </div>
-        <div style={{
-          position: 'absolute', top: 0, right: 0, bottom: 0, width: '45%',
-          background: 'radial-gradient(circle at 80% 40%, rgba(184,150,10,0.12) 0%, transparent 65%)',
-          pointerEvents: 'none',
-        }} />
+{/* Hero */}
+<div
+  style={{
+    background: 'linear-gradient(135deg, var(--blue) 0%, #0e2550 60%, #162d5e 100%)',
+    borderRadius: '20px',
+    padding: 'clamp(40px, 6vw, 80px) clamp(28px, 5vw, 68px)',
+    marginBottom: '60px',
+    position: 'relative',
+    overflow: 'hidden',
+  }}
+>
+  {/* subtle grid texture */}
+  <div
+    style={{
+      position: 'absolute',
+      inset: 0,
+      opacity: 0.04,
+      backgroundImage: `
+        linear-gradient(
+          rgba(255,255,255,0.4) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.4) 1px,
+          transparent 1px
+        )
+      `,
+      backgroundSize: '40px 40px',
+      pointerEvents: 'none',
+    }}
+  />
 
-        {/* Gold top label */}
-        <div style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: '11px',
-          letterSpacing: '4px',
-          textTransform: 'uppercase',
+  {/* soft gold glow */}
+  <div
+    style={{
+      position: 'absolute',
+      width: '320px',
+      height: '320px',
+      borderRadius: '50%',
+      background: 'rgba(184,150,10,0.12)',
+      filter: 'blur(90px)',
+      top: '-80px',
+      right: '-40px',
+      pointerEvents: 'none',
+    }}
+  />
+
+  {/* Content */}
+  <div style={{ position: 'relative', zIndex: 2 }}>
+    {/* Gold top label */}
+    <div
+      style={{
+        fontFamily: 'var(--font-body)',
+        fontSize: '11px',
+        letterSpacing: '4px',
+        textTransform: 'uppercase',
+        color: 'var(--gold-light)',
+        marginBottom: '18px',
+        opacity: 0.9,
+      }}
+    >
+      9-րդ դասարան · Հայոց պատմություն եւ գրականություն
+    </div>
+
+    <h1
+      style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(28px, 5.5vw, 54px)',
+        fontWeight: 700,
+        color: '#fff',
+        letterSpacing: '-0.3px',
+        lineHeight: 1.2,
+        maxWidth: '580px',
+        marginBottom: '20px',
+      }}
+    >
+      Գրի՛ր էսսե,
+      <br />
+      <span
+        style={{
           color: 'var(--gold-light)',
-          marginBottom: '18px',
-          opacity: 0.9,
-        }}>
-          9-րդ դասարան · Հայոց պատմություն եւ գրականություն
-        </div>
+          fontStyle: 'italic',
+        }}
+      >
+        որն արժանի է բարձր գնահատականի։
+      </span>
+    </h1>
 
-        <h1 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(28px, 5.5vw, 54px)',
-          fontWeight: 700,
-          color: '#fff',
-          letterSpacing: '-0.3px',
-          lineHeight: 1.2,
-          maxWidth: '580px',
-          marginBottom: '20px',
-        }}>
-          Գրի՛ր էսսե,<br />
-          <span style={{ color: 'var(--gold-light)', fontStyle: 'italic' }}>որն արժանի է բարձր գնահատականի։</span>
-        </h1>
+    <p
+      style={{
+        fontSize: '16px',
+        color: 'rgba(255,255,255,0.68)',
+        maxWidth: '500px',
+        lineHeight: 1.75,
+        marginBottom: '36px',
+        fontFamily: 'var(--font-display)',
+        fontStyle: 'italic',
+      }}
+    >
+      Սովորիր{' '}
+      <em style={{ color: 'rgba(255,255,255,0.9)' }}>
+        վերլուծաբար մտածել
+      </em>{' '}
+      ՝ կապելով պատմությունը, գրականությունն ու քո գաղափարները։
+    </p>
 
-        <p style={{
-          fontSize: '16px',
-          color: 'rgba(255,255,255,0.62)',
-          maxWidth: '500px',
-          lineHeight: 1.75,
-          marginBottom: '36px',
+    {/* Quote block */}
+    <div
+      style={{
+        borderLeft: '3px solid var(--gold)',
+        paddingLeft: '16px',
+        marginBottom: '36px',
+        maxWidth: '440px',
+      }}
+    >
+      <p
+        style={{
+          fontSize: '14px',
+          color: 'rgba(255,255,255,0.55)',
           fontFamily: 'var(--font-display)',
           fontStyle: 'italic',
-        }}>
-          Սովորիր <em style={{ color: 'rgba(255,255,255,0.85)' }}>վերլուծաբար մտածել</em>՝ կապելով պատմությունը, գրականությունն ու քո գաղափարները։
-        </p>
+          lineHeight: 1.7,
+          margin: 0,
+        }}
+      >
+        «Ճիշտ բառը միշտ ավելի ուժեղ է, քան երկար նախադասությունը»
+      </p>
 
-        {/* Armenian literary quote decoration */}
-        <div style={{
-          borderLeft: '3px solid var(--gold)',
-          paddingLeft: '16px',
-          marginBottom: '36px',
-          maxWidth: '440px',
-        }}>
-          <p style={{
-            fontSize: '14px',
-            color: 'rgba(255,255,255,0.5)',
-            fontFamily: 'var(--font-display)',
-            fontStyle: 'italic',
-            lineHeight: 1.7,
-            margin: 0,
-          }}>
-            «Ճիշտ բառը միշտ ավելի ուժեղ է, քան երկար նախադասությունը»
-          </p>
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '6px', margin: '6px 0 0' }}>
-            — Մարկ Տվեն
-          </p>
-        </div>
+      <p
+        style={{
+          fontSize: '12px',
+          color: 'rgba(255,255,255,0.35)',
+          marginTop: '6px',
+          margin: '6px 0 0',
+        }}
+      >
+        — Մարկ Տվեն
+      </p>
+    </div>
 
-        <button
-          onClick={() => navigate('/methodology')}
-          style={{
-            background: 'var(--gold)',
-            color: 'var(--blue)',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '13px 30px',
-            fontSize: '15px',
-            fontWeight: 700,
-            fontFamily: 'var(--font-body)',
-            cursor: 'pointer',
-            transition: 'opacity 0.2s, transform 0.15s',
-            boxShadow: '0 4px 16px rgba(184,150,10,0.35)',
-          }}
-          onMouseEnter={e => { e.target.style.opacity = '0.88'; e.target.style.transform = 'translateY(-1px)'; }}
-          onMouseLeave={e => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }}
-        >
-          Սկսիր մեթոդաբանությունից →
-        </button>
-      </div>
-
-      {/* Methodology chain preview */}
-      <div style={{ marginBottom: '60px' }}>
-        <div style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: '11px',
-          letterSpacing: '3px',
-          textTransform: 'uppercase',
-          color: 'var(--ink-muted)',
-          marginBottom: '10px',
-        }}>
-          Հիմնական Մեթոդ
-        </div>
-        <h2 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '24px',
-          fontWeight: 700,
-          marginBottom: '20px',
-          color: 'var(--ink)',
-        }}>
-          Յուրաքանչյուր ուժեղ էսսե հետևում է այս շղթային
-        </h2>
-        <Diagram steps={chainSteps} interactive={true} />
-        <p style={{ marginTop: '14px', fontSize: '14px', color: 'var(--ink-muted)', fontStyle: 'italic' }}>
-          Սեղմիր յուրաքանչյուր քայլի վրա՝ ծանոթանալու համար։ 
-          <span
-            style={{ color: 'var(--blue-mid)', cursor: 'pointer', textDecoration: 'underline' }}
-            onClick={() => navigate('/methodology')}
-          >
-            
-          </span>
-        </p>
-      </div>
+    <button
+      onClick={() => navigate('/methodology')}
+      style={{
+        background: 'var(--gold)',
+        color: 'var(--blue)',
+        border: 'none',
+        borderRadius: '8px',
+        padding: '13px 30px',
+        fontSize: '15px',
+        fontWeight: 700,
+        fontFamily: 'var(--font-body)',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        boxShadow: '0 4px 16px rgba(184,150,10,0.35)',
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.opacity = '0.9';
+        e.target.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }}
+    >
+      Սկսիր մեթոդաբանությունից →
+    </button>
+  </div>
+</div>,
 
       {/* Section cards */}
       <div>
