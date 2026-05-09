@@ -10,13 +10,23 @@ const teamDescription = {
 };
 
 // Project Leader
-const projectLeader = {
+const projectLeader = [
+  {
   name: "Նինա Վարդանյան",
   role: "Նախագծի Ղեկավար",
   bio: "Կազմակերպում և ղեկավարում է նախագծի ամբողջ ընթացքը։ Պլանավորում է աշխատանքները, բաշխում է պարտականությունները թիմի անդամների միջև և հետևում է, որ նախագիծը իրականացվի ժամանակին ու արդյունավետ։ Վերահսկում է կատարվող աշխատանքների որակը և ապահովում թիմի համատեղ ու համակարգված աշխատանքը։",
-  image: "/images/icon.png",
+  image: "/images/nv.png",
   color: "#1e293b",
-};
+  },
+  {
+    name: "Լիլիթ ՈՒզունյան",
+    role: "Նախագծի Ղեկավար",
+    bio: "Պատասխանատու է նախագծի բովանդակային համակարգման համար։ Հետևում է նյութերի ճշգրտությանը, մասնակցում է կառուցվածքի մշակմանը և ապահովում, որ հարթակի կրթական բովանդակությունը լինի հասկանալի, օգտակար և համակարգված։",
+    image: "/images/lu.png",
+    color: "#1e293b",
+  },
+];
+
 
 // Team Members
 const teamMembers = [
@@ -45,7 +55,7 @@ const teamMembers = [
     name: "Լուսինե Հարությունյան",
     role: "ԹՎԱՅՆԱՑՄԱՆ ՄԱՍՆԱԳԵՏ",
     bio: "Զբաղվում է 7-րդ դասարանի դասագրքերի և նյութերի թվայնացմամբ։ Մուտքագրում և խմբագրում է տեքստերը՝ ապահովելով դրանց ճշգրտությունն ու ընթեռնելիությունը։",
-    image: "/images/icon.png",
+    image: "/images/lusine2.png",
     color: "#F59E0B",
   },
 ];
@@ -122,69 +132,72 @@ export default function AboutUs() {
           gap: '24px',
         }}
       >
-        {/* Leader Card */}
-        <div
-          style={{
-            gridColumn: '1 / -1',
-            background: '#fff',
-            border: '1px solid #e5e7eb',
-            borderRadius: '16px',
-            padding: '24px',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '20px',
-            boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: '8px',
-              backgroundColor: projectLeader.color,
-            }}
-          />
+{/* Leader Cards */}
+{projectLeader.map((leader, i) => (
+  <div
+    key={i}
+    style={{
+      gridColumn: '1 / -1',
+      background: '#fff',
+      border: '1px solid #e5e7eb',
+      borderRadius: '16px',
+      padding: '24px',
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      gap: '20px',
+      boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
+      position: 'relative',
+      overflow: 'hidden',
+    }}
+  >
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        width: '8px',
+        backgroundColor: leader.color,
+      }}
+    />
 
-          <Avatar
-            src={projectLeader.image}
-            color={projectLeader.color}
-            size={100}
-          />
+    <Avatar
+      src={leader.image}
+      color={leader.color}
+      size={100}
+    />
 
-          <div style={{ flex: 1, minWidth: '250px' }}>
-            <h3 style={{ margin: '0 0 8px', fontSize: '22px' }}>
-              {projectLeader.name}
-            </h3>
+    <div style={{ flex: 1, minWidth: '250px' }}>
+      <h3 style={{ margin: '0 0 8px', fontSize: '22px' }}>
+        {leader.name}
+      </h3>
 
-            <div
-              style={{
-                color: projectLeader.color,
-                fontSize: '13px',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                marginBottom: '10px',
-              }}
-            >
-              {projectLeader.role}
-            </div>
+      <div
+        style={{
+          color: leader.color,
+          fontSize: '13px',
+          fontWeight: 'bold',
+          textTransform: 'uppercase',
+          marginBottom: '10px',
+        }}
+      >
+        {leader.role}
+      </div>
 
-            <p
-              style={{
-                fontSize: '15px',
-                color: '#4b5563',
-                margin: 0,
-                lineHeight: '1.6',
-              }}
-            >
-              {projectLeader.bio}
-            </p>
-          </div>
-        </div>
+      <p
+        style={{
+          fontSize: '15px',
+          color: '#4b5563',
+          margin: 0,
+          lineHeight: '1.6',
+        }}
+      >
+        {leader.bio}
+      </p>
+    </div>
+  </div>
+))}
 
         {/* Team Members */}
         {teamMembers.map((member, i) => (

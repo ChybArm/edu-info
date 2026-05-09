@@ -172,22 +172,51 @@ function Matching() {
           <div style={{ fontFamily: 'var(--font-body)', fontSize: '11px', letterSpacing: '2px', color: 'var(--teal)', marginBottom: '10px', textTransform: 'uppercase' }}>
             Գրական երկեր
           </div>
-          {works.map(w => {
-            const eventId = Object.entries(matches).find(([, wid]) => wid === w.id)?.[0];
-            const isCorrect = checked && eventId === w.id;
-            const isWrong = checked && eventId && eventId !== w.id;
-            return (
-              <div key={w.id} onClick={() => handleWork(w.id)} style={{
-                background: isCorrect ? 'var(--green-light)' : isWrong ? 'var(--red-light)' : 'var(--white)',
-                border: `1.5px solid ${isCorrect ? 'var(--green)' : isWrong ? 'var(--red)' : 'var(--border)'}`,
-                borderRadius: '8px', padding: '12px 14px', marginBottom: '8px',
-                cursor: checked ? 'default' : 'pointer',
-                fontSize: '13.5px', color: 'var(--ink)', lineHeight: 1.55, transition: 'all 0.15s',
-              }}>
-                {w.text}
-              </div>
-            );
-          })}
+          {works.map((w) => {
+  const eventId = Object.entries(matches).find(
+    ([, wid]) => wid === w.id
+  )?.[0];
+
+  const isChosen = !!eventId;
+  const isCorrect = checked && eventId === w.id;
+  const isWrong = checked && eventId && eventId !== w.id;
+
+  return (
+    <div
+      key={w.id}
+      onClick={() => handleWork(w.id)}
+      style={{
+        background: isCorrect
+          ? "#dcfce7"
+          : isWrong
+          ? "#fee2e2"
+          : "#ffffff",
+
+        border: `1.5px solid ${
+          isCorrect
+            ? "#16a34a"
+            : isWrong
+            ? "#dc2626"
+            : "#d1d5db"
+        }`,
+
+        borderRadius: "8px",
+        padding: "12px 14px",
+        marginBottom: "8px",
+        cursor: checked ? "default" : "pointer",
+        fontSize: "13.5px",
+        color: "#111827",
+        lineHeight: 1.55,
+        transition: "all 0.2s ease",
+
+        // вот это главное изменение
+        opacity: !checked && isChosen ? 0.45 : 1
+      }}
+    >
+      {w.text}
+    </div>
+  );
+})}
         </div>
       </div>
 
