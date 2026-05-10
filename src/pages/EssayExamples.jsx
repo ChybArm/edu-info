@@ -65,7 +65,7 @@ export default function EssayExamples() {
       <SectionHeader
         number="04"
         title="Էսսեի օրինակներ"
-        subtitle="Ուսումնասիրեք ծանոթագրված միջին և բարձր մակարդակի աշխատանքները և հասկացեք, թե ինչպես են կիրառվում գնահատման չափանիշները։!"
+        subtitle="Ուսումնասիրեք ծանոթագրված միջին և բարձր մակարդակի աշխատանքները և հասկացեք, թե ինչպես են կիրառվում գնահատման չափանիշները։"
         color="var(--gold)"
       />
 
@@ -109,7 +109,7 @@ export default function EssayExamples() {
                   {e.title}
                 </h3>
                 <p style={{ fontSize: '14px', color: 'var(--ink-muted)', fontStyle: 'italic', marginBottom: '12px', lineHeight: 1.6 }}>
-                  Հարց. «{e.prompt}»
+                
                 </p>
                 <p style={{ fontSize: '14px', color: 'var(--ink-light)', lineHeight: 1.7 }}>{e.feedback}</p>
                 <div style={{ marginTop: '14px', fontSize: '14px', color: isHigh ? 'var(--teal)' : 'var(--gold)', fontWeight: 600 }}>
@@ -147,35 +147,85 @@ export default function EssayExamples() {
                 {essay.title}
               </h2>
               <p style={{ fontSize: '14px', color: 'var(--ink-muted)', fontStyle: 'italic', marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--border)' }}>
-                Հարց. «{essay.prompt}»
+
               </p>
 
               <div style={{ fontSize: '16px', lineHeight: 1.9, color: 'var(--ink)', fontFamily: 'var(--font-display)' }}>
-                {(() => {
-                  const text = essay.body;
-                  const parts = [];
-                  let lastIndex = 0;
-                  const sorted = [...essay.annotations].sort((a, b) =>
-                    text.indexOf(a.startText) - text.indexOf(b.startText)
-                  );
-                  sorted.forEach((ann, i) => {
-                    const idx = text.indexOf(ann.startText, lastIndex);
-                    if (idx === -1) return;
-                    if (idx > lastIndex) parts.push(<span key={`t${i}`}>{text.slice(lastIndex, idx)}</span>);
-                    parts.push(
-                      <span key={`a${i}`} title={ann.note} style={{
-                        background: ann.type === 'strength' ? 'rgba(14,92,107,0.1)' : 'rgba(139,26,26,0.08)',
-                        borderBottom: `2px solid ${ann.type === 'strength' ? 'var(--teal)' : 'var(--red)'}`,
-                        borderRadius: '2px', cursor: 'help', padding: '1px 0',
-                      }}>
-                        {ann.startText}
-                      </span>
-                    );
-                    lastIndex = idx + ann.startText.length;
-                  });
-                  if (lastIndex < text.length) parts.push(<span key="end">{text.slice(lastIndex)}</span>);
-                  return parts;
-                })()}
+              {(() => {
+  const paragraphs = essay.body.split('\n\n');
+
+  return paragraphs.map((paragraph, pIndex) => {
+    const parts = [];
+    let lastIndex = 0;
+
+    const sorted = [...essay.annotations]
+      .filter(a => paragraph.includes(a.startText))
+      .sort(
+        (a, b) =>
+          paragraph.indexOf(a.startText) -
+          paragraph.indexOf(b.startText)
+      );
+
+    sorted.forEach((ann, i) => {
+      const idx = paragraph.indexOf(ann.startText, lastIndex);
+
+      if (idx === -1) return;
+
+      if (idx > lastIndex) {
+        parts.push(
+          <span key={`text-${pIndex}-${i}`}>
+            {paragraph.slice(lastIndex, idx)}
+          </span>
+        );
+      }
+
+      parts.push(
+        <span
+          key={`ann-${pIndex}-${i}`}
+          title={ann.note}
+          style={{
+            background:
+              ann.type === 'strength'
+                ? 'rgba(14,92,107,0.1)'
+                : 'rgba(139,26,26,0.08)',
+            borderBottom: `2px solid ${
+              ann.type === 'strength'
+                ? 'var(--teal)'
+                : 'var(--red)'
+            }`,
+            borderRadius: '2px',
+            cursor: 'help',
+            padding: '1px 0',
+          }}
+        >
+          {ann.startText}
+        </span>
+      );
+
+      lastIndex = idx + ann.startText.length;
+    });
+
+    if (lastIndex < paragraph.length) {
+      parts.push(
+        <span key={`end-${pIndex}`}>
+          {paragraph.slice(lastIndex)}
+        </span>
+      );
+    }
+
+    return (
+      <p
+        key={pIndex}
+        style={{
+          marginBottom: '20px',
+          textIndent: '20px',
+        }}
+      >
+        {parts}
+      </p>
+    );
+  });
+})()}
               </div>
 
               <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap', gap: '20px', fontSize: '13px', color: 'var(--ink-muted)' }}>

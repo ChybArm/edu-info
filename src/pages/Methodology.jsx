@@ -104,7 +104,7 @@ export default function Methodology() {
         </div>
       </section>
 
-      <section style={{ marginBottom: '56px' }}>
+      {/* <section style={{ marginBottom: '56px' }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', marginBottom: '20px' }}>
           Շղթայի օրինակներ
         </h2>
@@ -143,7 +143,7 @@ export default function Methodology() {
             </Expandable>
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
