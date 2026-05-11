@@ -62,8 +62,8 @@ export default function Footer() {
               margin: 0,
               fontFamily: 'var(--font-display)',
             }}>
-              Խորամուխ եղիր։ Գրիր ավելի լավ։<br />
-              Կապիր պատմությունն ու գրականությունը — թող գաղափարները խոսեն։
+              Խորամուխ եղի՛ր։ Գրի՛ր ավելի լավ։<br />
+              Կապի՛ր պատմությունն ու գրականությունը — թող գաղափարները խոսեն։
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export default function Footer() {
               marginBottom: '14px',
             }}>Կապ</div>
             <a
-              href="mailto:hello@sharardutyun.am"
+              href="mailto:hello@essay.am"
               style={{
                 fontSize: '14px',
                 color: 'rgba(255,255,255,0.55)',
@@ -117,7 +117,7 @@ export default function Footer() {
                 transition: 'color 0.2s',
               }}
             >
-              hello@essay.am
+              Էլ․ հասցեն շուտով հասանելի կլինի։
             </a>
             <p style={{
               fontSize: '13px',
