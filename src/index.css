@@ -23,10 +23,11 @@
   --blue-pale: #edf2fb;
 
  /* Orange manuscript accent */
- --gold: #d07a2d;
- --gold-light: #efb27a;
- --gold-pale: #fdf1e6;
 
+  --gold: #d07a2d; 
+  --gold-light: #efb27a; 
+  --gold-pale: #fdf1e6;
+  
   /* Supporting colors */
   --red: #8b1a1a;
   --red-light: #f5e0e0;
