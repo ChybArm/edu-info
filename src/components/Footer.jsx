@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 const links = [
   { to: '/', label: 'Գլխավոր' },
-  { to: '/exam-structure', label: 'Քննության կառուցվածք' },
+  { to: '/exam-structure', label: 'Էսսեի կառուցվածք' },
   { to: '/topic-bank', label: 'Թեմաների բազա' },
   { to: '/methodology', label: 'Մեթոդաբանություն' },
   { to: '/essay-examples', label: 'էսսեի օրինակներ' },
@@ -117,7 +117,7 @@ export default function Footer() {
                 transition: 'color 0.2s',
               }}
             >
-              Կայքը գտնվում է  <br /> փորձարկման փուլում: <br /> Էլ. հասցեն շուտով հասանելի կլինի։
+              Կայքը գտնվում է  <br /> փորձարկման փուլում: <br /> Էլ հասցեն շուտով հասանելի կլինի։
             </a>
             <p style={{
               fontSize: '13px',

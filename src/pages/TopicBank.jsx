@@ -422,7 +422,7 @@ export default function TopicBank() {
       {/* Օգտագործում ենք SectionHeader կոմպոնենտը */}
       <SectionHeader
         number="02"
-        title="Թեմաների Բազա"
+        title="Թեմաների բազա"
         subtitle="Ընտրեք Գրականության կամ Պատմության բաժինը՝ թեմաներն ուսումնասիրելու համար:"
         color="var(--blue-mid)" 
       />

@@ -459,7 +459,7 @@ export default function ExamStructure() {
     <div>
       <SectionHeader
         number="01"
-        title="Քննության կառուցվածք"
+        title="Էսսեի կառուցվածք"
         subtitle="Նախքան բուն առաջադրանքին անցնելը, ծանոթացե՛ք գնահատման սկզբունքներին։"
         color="var(--blue)"
       />
